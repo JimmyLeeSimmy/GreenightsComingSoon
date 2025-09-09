@@ -51,7 +51,7 @@
             .logo-container {
                 left: 50%;
                 transform: translateX(-50%);
-                width: 60vw; /* Adjusted size for better centering on portrait screens */
+                width: 80%; /* Adjusted width for better centering on portrait screens */
                 top: 5vh;
             }
         }
@@ -75,11 +75,11 @@
         .email-section-wrapper {
             position: absolute;
             bottom: 5vh;
-            right: 5%; /* Aligned right on the screen */
+            right: 5%;
             left: auto;
             transform: none;
             z-index: 5;
-            width: clamp(300px, 45vw, 600px); /* A bit wider and more responsive */
+            width: clamp(300px, 45vw, 600px);
             text-align: left;
         }
 
@@ -88,7 +88,6 @@
             background: rgba(0, 0, 0, 0.6);
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            /* Removed fixed height and overflow to prevent scrollbar */
         }
 
         .email-section p {
@@ -98,15 +97,15 @@
             text-align: left;
             font-family: var(--font-lora);
         }
+        
+        .email-section p.separator {
+            border-bottom: 1px solid var(--text-light);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
 
         .email-section p:last-of-type {
             margin-bottom: 0;
-        }
-
-        .email-section .promo-text {
-            font-size: clamp(1rem, 1.8vw, 1.2rem);
-            font-family: var(--font-alice);
-            font-weight: bold;
         }
 
         .email-section form {
@@ -197,10 +196,10 @@
 
         <div class="email-section-wrapper">
             <div class="email-section">
-                <p class="promo-text">Remote tent havens on car-free private land for two to four expedition campers in the uplands of England & Wales.</p>
-                <p>We're actively seeking investors, land partners and expedition campers who are keen to help us grow our footprint of private tent havens in England and Wales.</p>
+                <p class="separator">Remote tent havens on car-free private land for two to four expedition campers in the uplands of England & Wales.</p>
+                <p class="separator">We're actively seeking investors, land partners and expedition campers who are keen to help us grow our footprint of private tent havens in England and Wales.</p>
                 <p>Please leave your email address for updates and a note if you have any interest in partnering or becoming a member.</p>
-                <p class="promo-text">Greenights: for people who leave no trace but love and respect - for remote natural spaces.</p>
+                <p>Greenights: for people who leave no trace but love and respect - for remote natural spaces.</p>
                 <form id="contact-form" action="https://formspree.io/f/xqadnedk" method="post">
                     <input type="email" name="_replyto" placeholder="Your email address" required>
                     <textarea name="message" placeholder="Questions/Comments" rows="4"></textarea>
