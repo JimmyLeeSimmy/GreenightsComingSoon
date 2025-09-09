@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenights - Coming Soon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alice&family=Lora&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2a583e;
+            --secondary-color: #d8c09a;
+            --text-light: #f4f2ee;
+            --text-dark: #333;
+            --font-alice: 'Alice', serif;
+            --font-lora: 'Lora', serif;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-alice);
+            color: var(--text-light);
+            background-color: var(--text-dark);
+            height: 100%;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            overflow-y: auto;   /* Allow vertical scrolling */
+        }
+
+        .container {
+            position: relative;
+            min-height: 100vh; /* Ensure container is at least viewport height */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 0.5s ease-in-out;
+            filter: brightness(1.25);
+            padding-bottom: 5vh; /* Add padding to ensure content above footer is visible */
+        }
+
+        /* Base background for landscape */
+        .container {
+            background-image: url('images/Greenights - Cover Image - Tent on Left - Low Platform - Valley Right (1).jpg');
+        }
+        
+        /* Media query for portrait orientation to switch background */
+        @media (orientation: portrait) {
+            .container {
+                background-image: url('images/Greenights - Cover Image - Portrait 1 (1).jpg');
+                justify-content: flex-start; /* Adjust content positioning for portrait */
+            }
+            .logo-container {
+                position: relative; /* Change to relative positioning */
+                top: auto;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 70%; /* Adjust size for better fit above email box */
+                max-width: 400px; /* Limit max size */
+                margin-top: 5vh; /* Space from top */
+                margin-bottom: 2vh; /* Space from email box */
+            }
+            .email-section-wrapper {
+                position: relative; /* Change to relative positioning */
+                bottom: auto;
+                right: auto;
+                left: 50%;
+                transform: translateX(-50%);
