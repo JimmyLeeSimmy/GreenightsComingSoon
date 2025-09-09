@@ -35,29 +35,29 @@
             background-size: cover;
             background-position: center;
             transition: background-image 0.5s ease-in-out;
-            filter: brightness(1.15); /* A little brighter */
+            filter: brightness(1.15);
         }
 
         /* Base background for landscape */
         .container {
-            background-image: url('https://jimmyleesimmy.github.io/GreenightsComingSoon/images/Greenights - Cover Image - Tent on Left - Low Platform - Valley Right (1).jpg');
+            background-image: url('images/Greenights - Cover Image - Tent on Left - Low Platform - Valley Right (1).jpg');
         }
         
         /* Media query for portrait orientation to switch background */
         @media (orientation: portrait) {
             .container {
-                background-image: url('https://jimmyleesimmy.github.io/GreenightsComingSoon/images/Greenights - Cover Image - Portrait 1 (1).jpg');
+                background-image: url('images/Greenights - Cover Image - Portrait 1 (1).jpg');
             }
         }
 
         .logo-container {
             position: absolute;
-            top: 5vh; /* Raised higher on the screen */
-            left: 75%; /* Keep original horizontal placement */
+            top: 20vh; /* Moved higher on the screen */
+            left: 20%; /* Moved to the left, above the tent */
             transform: translateX(-50%);
             z-index: 10;
-            width: 80%; /* Double the previous size relative to viewport, was 40% */
-            max-width: 2400px; /* Adjust max width for larger size */
+            width: 80%;
+            max-width: 2400px;
         }
 
         .logo-container img {
@@ -68,27 +68,27 @@
 
         .concept-text-image {
             position: absolute;
-            top: 50%; /* Halfway down */
-            right: 5vw; /* Right aligned */
-            transform: translateY(-50%);
+            top: 60vh; /* Positioned above the email box */
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 5;
-            width: 105%; /* Enlarged by about three times (original was 35%) */
-            max-width: 1200px; /* Adjust max width for larger size */
-            text-align: right;
+            width: 50%; /* Made smaller */
+            max-width: 600px;
+            text-align: left;
         }
 
         .concept-text-image img {
             max-width: 100%;
             height: auto;
             display: block;
-            margin-left: auto; /* Right align the image itself */
+            margin-right: auto; /* Aligned to the left */
         }
 
         .email-section-wrapper {
             position: absolute;
             bottom: 5vh;
-            left: 60%; /* Shifted right of center */
-            transform: translateX(-50%); /* Adjust transform to account for new left value */
+            left: 60%;
+            transform: translateX(-50%);
             z-index: 5;
             width: 90%;
             max-width: 600px;
@@ -103,10 +103,10 @@
         }
 
         .email-section p {
-            margin: 0 0 1rem; /* Space between sentences */
+            margin: 0 0 1rem;
             font-size: clamp(0.9rem, 1.6vw, 1.1rem);
             line-height: 1.6;
-            text-align: left; /* Left align info text */
+            text-align: left;
             font-family: var(--font-lora);
         }
 
@@ -168,7 +168,7 @@
         /* Media queries for design adjustments on smaller screens */
         @media (max-width: 1024px) {
             .logo-container {
-                left: 50%; /* Center logo on smaller screens */
+                left: 50%;
                 transform: translateX(-50%);
                 width: 60%;
                 top: 5vh;
@@ -182,14 +182,14 @@
             }
             .email-section-wrapper {
                 bottom: 3vh;
-                left: 50%; /* Center email box on smaller screens */
+                left: 50%;
                 transform: translateX(-50%);
                 width: 95%;
             }
         }
         @media (max-width: 768px) {
             .logo-container {
-                top: 2vh; /* Adjust for very small screens */
+                top: 2vh;
                 width: 90%;
             }
             .concept-text-image {
@@ -230,12 +230,11 @@
     </div>
 
     <script>
-        // Formspree background submission
         var form = document.getElementById("contact-form");
         
         async function handleSubmit(event) {
           event.preventDefault();
-          var status = document.createElement('div'); // Optional: for success/error messages
+          var status = document.createElement('div');
           var data = new FormData(event.target);
           fetch(event.target.action, {
             method: form.method,
@@ -245,22 +244,20 @@
             }
           }).then(response => {
             if (response.ok) {
-              status.innerHTML = "Thanks for your submission!"; // Optional: show message
-              form.reset(); // Clear the form
+              status.innerHTML = "Thanks for your submission!";
+              form.reset();
             } else {
               response.json().then(data => {
                 if (Object.hasOwnProperty.call(data, "errors")) {
-                  status.innerHTML = data["errors"].map(error => error["message"]).join(", "); // Optional: show error
+                  status.innerHTML = data["errors"].map(error => error["message"]).join(", ");
                 } else {
-                  status.innerHTML = "Oops! There was a problem submitting your form."; // Optional: show error
+                  status.innerHTML = "Oops! There was a problem submitting your form.";
                 }
               })
             }
           }).catch(error => {
-            status.innerHTML = "Oops! There was a problem submitting your form."; // Optional: show error
+            status.innerHTML = "Oops! There was a problem submitting your form.";
           });
-          // You could append 'status' element to your form/page to show messages
-          // form.appendChild(status); 
         }
         form.addEventListener("submit", handleSubmit)
     </script>
