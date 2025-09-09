@@ -22,8 +22,8 @@
             color: var(--text-light);
             background-color: var(--text-dark);
             height: 100%;
-            overflow-x: hidden; /* Prevents horizontal scrolling */
-            overflow-y: auto;   /* Allows vertical scrolling */
+            overflow-x: hidden;
+            overflow-y: auto;
         }
 
         .container {
@@ -50,28 +50,32 @@
             .container {
                 background-image: url('images/Greenights - Cover Image - Portrait 1 (1).jpg');
                 justify-content: flex-start;
+                align-items: center; /* Center content horizontally */
             }
             .logo-container {
-                position: relative;
+                position: relative; /* Change to relative positioning */
                 top: auto;
-                left: 50%;
-                transform: translateX(-50%);
+                left: auto;
+                transform: none;
                 width: 70%;
                 max-width: 400px;
                 margin-top: 5vh;
                 margin-bottom: 2vh;
+                text-align: center;
             }
             .email-section-wrapper {
                 position: relative;
                 bottom: auto;
                 right: auto;
-                left: 50%;
-                transform: translateX(-50%);
+                left: auto;
+                transform: none;
                 width: 90%;
+                max-width: 600px;
                 margin-top: 2vh;
             }
         }
 
+        /* Landscape mode positioning (default) */
         .logo-container {
             position: absolute;
             top: 5vh;
@@ -86,6 +90,7 @@
             width: 100%;
             height: auto;
             display: block;
+            margin: 0 auto; /* Center image within its container */
         }
 
         .email-section-wrapper {
@@ -177,33 +182,6 @@
             background: rgba(0, 0, 0, 0.4);
             z-index: 2;
         }
-
-        /* Adjustments for smaller landscape screens (e.g., small tablets in landscape) */
-        @media (max-width: 1024px) and (orientation: landscape) {
-            .logo-container {
-                left: 50%;
-                transform: translateX(-50%);
-                width: 60%;
-                top: 5vh;
-            }
-            .email-section-wrapper {
-                bottom: 3vh;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 95%;
-            }
-        }
-        /* Further adjustments for very small screens (phones) */
-        @media (max-width: 768px) {
-            .logo-container {
-                top: 2vh;
-                width: 90%;
-            }
-            .email-section-wrapper {
-                bottom: 2vh;
-                max-width: 90%;
-            }
-        }
     </style>
 </head>
 <body>
@@ -220,46 +198,4 @@
                 <p class="separator">We're actively seeking investors, land partners and expedition campers who are keen to help us grow our footprint of private tent havens in England and Wales.</p>
                 <p>Please leave your email address for updates and a note if you have any interest in partnering or becoming a member.</p>
                 <p>Greenights: for people who leave no trace but love and respect - for remote natural spaces.</p>
-                <form id="contact-form" action="https://formspree.io/f/xqadnedk" method="post">
-                    <input type="email" name="_replyto" placeholder="Your email address" required>
-                    <textarea name="message" placeholder="Questions/Comments" rows="4"></textarea>
-                    <button type="submit">Send</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        var form = document.getElementById("contact-form");
-        
-        async function handleSubmit(event) {
-          event.preventDefault();
-          var status = document.createElement('div');
-          var data = new FormData(event.target);
-          fetch(event.target.action, {
-            method: form.method,
-            body: data,
-            headers: {
-                'Accept': 'application/json'
-            }
-          }).then(response => {
-            if (response.ok) {
-              status.innerHTML = "Thanks for your submission!";
-              form.reset();
-            } else {
-              response.json().then(data => {
-                if (Object.hasOwnProperty.call(data, "errors")) {
-                  status.innerHTML = data["errors"].map(error => error["message"]).join(", ");
-                } else {
-                  status.innerHTML = "Oops! There was a problem submitting your form.";
-                }
-              })
-            }
-          }).catch(error => {
-            status.innerHTML = "Oops! There was a problem submitting your form.";
-          });
-        }
-        form.addEventListener("submit", handleSubmit)
-    </script>
-</body>
-</html>
+                <form id="contact-form" action="https
