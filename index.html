@@ -38,9 +38,9 @@
             display: flex;
             flex-direction: column;
             background-size: cover;
-            background-position: center;
-            transition: background-image 0.5s ease-in-out;
+            background-position: center bottom;
             background-image: url('images/Greenights Landscape Background Web.png');
+            overflow-y: auto;
         }
 
         .overlay {
@@ -52,66 +52,69 @@
 
         .email-section-wrapper {
             position: absolute;
-            bottom: 5vh;
-            right: 5%;
-            width: clamp(300px, 45vw, 600px);
+            bottom: 2vh;
+            right: 2%;
+            width: clamp(350px, 50vw, 700px);
+            max-height: 30vh;
             z-index: 2;
-            padding: 1rem;
+            padding: 0.5rem;
         }
 
         .email-section {
-            padding: clamp(1rem, 4vw, 2rem);
+            padding: clamp(0.8rem, 3vw, 1.5rem);
             background: rgba(0, 0, 0, 0.6);
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             display: flex;
             flex-direction: column;
+            max-height: 30vh;
+            overflow-y: auto;
         }
 
         .email-section p {
-            margin: 0 0 1rem;
-            font-size: clamp(0.9rem, 1.6vw, 1.1rem);
-            line-height: 1.6;
+            margin: 0 0 0.8rem;
+            font-size: clamp(0.8rem, 1.4vw, 1rem);
+            line-height: 1.5;
             font-family: var(--font-lora);
         }
 
         .email-section p.separator {
             border-bottom: 1px solid var(--text-light);
-            padding-bottom: 1rem;
+            padding-bottom: 0.8rem;
         }
 
         .email-section form {
             display: flex;
             flex-direction: column;
-            margin-top: 1.5rem;
+            margin-top: 1rem;
         }
 
         .email-section input[type="email"],
         .email-section textarea {
-            padding: clamp(0.75rem, 2vw, 1rem);
-            margin-bottom: 1rem;
+            padding: clamp(0.6rem, 1.5vw, 0.8rem);
+            margin-bottom: 0.8rem;
             border: 1px solid var(--secondary-color);
             background: rgba(255, 255, 255, 0.15);
             color: var(--text-light);
             border-radius: 6px;
-            font-size: clamp(0.8rem, 1.5vw, 1rem);
+            font-size: clamp(0.7rem, 1.3vw, 0.9rem);
             font-family: var(--font-lora);
             width: 100%;
         }
 
         .email-section textarea {
             resize: vertical;
-            min-height: 80px;
+            min-height: 60px;
         }
 
         .email-section button {
-            padding: clamp(0.8rem, 2vw, 1.1rem);
+            padding: clamp(0.6rem, 1.5vw, 0.9rem);
             background: var(--primary-color);
             color: var(--text-light);
             border: none;
             border-radius: 6px;
             font-weight: 500;
-            font-size: clamp(1rem, 2vw, 1.1rem);
+            font-size: clamp(0.9rem, 1.8vw, 1rem);
             font-family: var(--font-alice);
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
@@ -128,10 +131,10 @@
         }
 
         .status-message {
-            margin-top: 1rem;
-            padding: 0.5rem;
+            margin-top: 0.8rem;
+            padding: 0.4rem;
             border-radius: 4px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             text-align: center;
         }
 
@@ -148,31 +151,36 @@
         @media (orientation: portrait) {
             .container {
                 background-image: url('images/Greenights Portrait Background Web - with Concept Text.png');
-                justify-content: flex-end;
-                align-items: center;
+                background-position: center;
                 padding: 5vh 0;
             }
 
             .email-section-wrapper {
-                position: relative;
-                bottom: auto;
-                right: auto;
+                position: absolute;
+                bottom: 2vh;
+                right: 2%;
                 width: clamp(250px, 80vw, 450px);
-                margin: 5vh auto 0;
+                max-height: none;
+                margin: 0;
             }
 
             .email-section {
                 max-height: none;
+                overflow-y: unset;
+            }
+
+            .email-section p {
+                font-size: clamp(0.8rem, 1.4vw, 1rem);
             }
         }
 
         @media (max-width: 600px) {
             .email-section {
-                padding: 1rem;
+                padding: 0.8rem;
             }
 
             .email-section p {
-                font-size: 0.9rem;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -184,7 +192,7 @@
             <div class="email-section" role="form" aria-labelledby="form-title">
                 <p class="separator" id="form-title">We're actively seeking investors, land partners and expedition campers who are keen to help us grow our footprint of private tent havens in England and Wales.</p>
                 <p>Please leave your email address for updates and a note if you have any interest in partnering or becoming a member.</p>
-                <p>Greenights: for people who leave no trace but love and respect - for remote natural spaces.</p>
+                <p>Greenights: for people who endeavor to leave no trace but love and respect - for remote natural spaces.</p>
                 <form id="contact-form" action="https://formspree.io/f/xqadnedk" method="post" novalidate>
                     <input type="email" name="_replyto" placeholder="Your email address" required aria-required="true" aria-label="Email address">
                     <textarea name="message" placeholder="Questions/Comments" rows="4" aria-label="Questions or comments"></textarea>
