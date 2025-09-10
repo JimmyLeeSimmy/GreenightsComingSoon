@@ -52,4 +52,174 @@
                 /* For portrait, stack content vertically, centered */
                 justify-content: center; /* Vertically center the email box */
                 align-items: center; /* Horizontally center the email box */
-                padding: 2vh 0; /* Add vertical padding to prevent content
+                padding: 2vh 0; /* Add vertical padding to prevent content from touching edges */
+            }
+            .email-section-wrapper {
+                position: relative; /* Make position relative in portrait */
+                bottom: auto; /* Remove absolute bottom positioning */
+                right: auto; /* Remove absolute right positioning */
+                left: auto; /* Remove absolute left positioning */
+                transform: none; /* Remove any transforms */
+                width: 90%; /* Wider for mobile portrait */
+                max-width: 500px; /* Constrain max width for tablets */
+                margin-top: 5vh; /* Space from top or other content above */
+                margin-bottom: 5vh; /* Space from bottom if scrollable */
+            }
+        }
+
+        /* Default landscape email box positioning */
+        .email-section-wrapper {
+            position: absolute;
+            bottom: 5vh;
+            right: 5%;
+            left: auto; /* Ensure it stays right-aligned */
+            transform: none; /* No transform needed for right alignment */
+            z-index: 5;
+            width: clamp(300px, 45vw, 600px); /* Responsive width */
+            text-align: left;
+            box-sizing: border-box; /* Include padding in the width calculation */
+        }
+
+        .email-section {
+            padding: clamp(1rem, 4vw, 2rem);
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .email-section p {
+            margin: 0 0 1rem;
+            font-size: clamp(0.9rem, 1.6vw, 1.1rem);
+            line-height: 1.6;
+            text-align: left;
+            font-family: var(--font-lora);
+        }
+        
+        .email-section p.separator {
+            border-bottom: 1px solid var(--text-light);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .email-section p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .email-section form {
+            display: flex;
+            flex-direction: column;
+            margin-top: 1.5rem;
+            flex-grow: 1; /* Allow form to take available space */
+        }
+
+        .email-section input[type="email"],
+        .email-section textarea {
+            padding: clamp(0.75rem, 2vw, 1rem);
+            margin-bottom: 15px;
+            border: 1px solid var(--secondary-color);
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--text-light);
+            border-radius: 6px;
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
+            font-family: var(--font-lora);
+            width: -webkit-fill-available; /* Fill available width */
+            width: -moz-available; /* Fill available width */
+            width: fill-available; /* Fill available width */
+        }
+        
+        .email-section textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .email-section button {
+            padding: clamp(0.8rem, 2vw, 1.1rem);
+            background: var(--primary-color);
+            color: var(--text-light);
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            font-family: var(--font-alice);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .email-section button:hover {
+            background-color: #3f7a55;
+            transform: translateY(-2px);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 2;
+        }
+
+        /* No specific logo-container or concept-text-image styles needed outside of portrait media query
+           as they are now part of the background images.
+        */
+        .logo-container { /* Keeping this empty for now, but not actively used for image content */
+            display: none; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="overlay"></div>
+        
+        <div class="email-section-wrapper">
+            <div class="email-section">
+                <p class="separator">Remote tent havens on car-free private land for two to four expedition campers in the uplands of England & Wales.</p>
+                <p class="separator">We're actively seeking investors, land partners and expedition campers who are keen to help us grow our footprint of private tent havens in England and Wales.</p>
+                <p>Please leave your email address for updates and a note if you have any interest in partnering or becoming a member.</p>
+                <p>Greenights: for people who leave no trace but love and respect - for remote natural spaces.</p>
+                <form id="contact-form" action="https://formspree.io/f/xqadnedk" method="post">
+                    <input type="email" name="_replyto" placeholder="Your email address" required>
+                    <textarea name="message" placeholder="Questions/Comments" rows="4"></textarea>
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var form = document.getElementById("contact-form");
+        
+        async function handleSubmit(event) {
+          event.preventDefault();
+          var status = document.createElement('div');
+          var data = new FormData(event.target);
+          fetch(event.target.action, {
+            method: form.method,
+            body: data,
+            headers: {
+                'Accept': 'application/json'
+            }
+          }).then(response => {
+            if (response.ok) {
+              status.innerHTML = "Thanks for your submission!";
+              form.reset();
+            } else {
+              response.json().then(data => {
+                if (Object.hasOwnProperty.call(data, "errors")) {
+                  status.innerHTML = data["errors"].map(error => error["message"]).join(", ");
+                } else {
+                  status.innerHTML = "Oops! There was a problem submitting your form.";
+                }
+              })
+            }
+          }).catch(error => {
+            status.innerHTML = "Oops! There was a problem submitting your form.";
+          });
+        }
+        form.addEventListener("submit", handleSubmit)
+    </script>
+</body>
+</html>
