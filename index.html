@@ -29,7 +29,7 @@
             background-color: var(--text-dark);
             min-height: 100vh;
             overflow-x: hidden;
-            overflow-y: auto;
+            overflow-y: auto; /* Enable scrolling for the full page */
         }
 
         .image-container {
@@ -38,6 +38,7 @@
             background-size: cover;
             background-position: center;
             background-image: url('images/Greenights - Bkg - Landscape.jpg');
+            width: 100%;
         }
 
         .overlay {
@@ -48,14 +49,16 @@
         }
 
         .email-section-wrapper {
-            width: clamp(300px, 80vw, 500px); /* Responsive width */
-            margin: 0 auto 2rem; /* Centered with bottom spacing */
-            padding: 1rem;
+            width: 100%; /* Full width of the page */
+            margin: 5vh auto 2rem; /* Slight top margin for connection, centered, bottom spacing */
+            padding: clamp(1rem, 3vw, 2rem); /* Dynamic padding */
             background-color: var(--primary-color); /* Match earthy green from image */
             z-index: 2;
         }
 
         .email-section {
+            max-width: 90%; /* Prevent edge touch on large screens */
+            margin: 0 auto; /* Center the content */
             padding: clamp(1rem, 3vw, 1.5rem);
             background: rgba(0, 0, 0, 0.6); /* Semi-transparent for contrast */
             border-radius: 8px;
@@ -65,39 +68,39 @@
         }
 
         .email-section p {
-            margin: 0 0 0.8rem;
-            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            margin: 0 0 clamp(0.5rem, 1.5vw, 0.8rem);
+            font-size: clamp(0.9rem, 2vw, 1.1rem); /* Dynamic text size */
             line-height: 1.5;
             font-family: var(--font-lora);
         }
 
         .email-section p.separator {
             border-bottom: 1px solid var(--text-light);
-            padding-bottom: 0.8rem;
+            padding-bottom: clamp(0.5rem, 1.5vw, 0.8rem);
         }
 
         .email-section form {
             display: flex;
             flex-direction: column;
-            margin-top: 1rem;
+            margin-top: clamp(1rem, 2vw, 1.5rem);
         }
 
         .email-section input[type="email"],
         .email-section textarea {
             padding: clamp(0.6rem, 1.5vw, 0.8rem);
-            margin-bottom: 0.8rem;
+            margin-bottom: clamp(0.5rem, 1.5vw, 0.8rem);
             border: 1px solid var(--secondary-color);
             background: rgba(255, 255, 255, 0.15);
             color: var(--text-light);
             border-radius: 6px;
-            font-size: clamp(0.8rem, 1.3vw, 1rem);
+            font-size: clamp(0.8rem, 1.8vw, 1rem);
             font-family: var(--font-lora);
             width: 100%;
         }
 
         .email-section textarea {
             resize: vertical;
-            min-height: 60px;
+            min-height: clamp(60px, 15vh, 80px); /* Dynamic textarea height */
         }
 
         .email-section button {
@@ -107,7 +110,7 @@
             border: none;
             border-radius: 6px;
             font-weight: 500;
-            font-size: clamp(0.9rem, 1.8vw, 1rem);
+            font-size: clamp(0.9rem, 2vw, 1rem);
             font-family: var(--font-lora);
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
@@ -130,12 +133,12 @@
             transform: translate(-50%, -50%);
             background: rgba(0, 0, 0, 0.8);
             color: var(--text-light);
-            padding: 1rem 2rem;
+            padding: clamp(1rem, 2vw, 2rem);
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             z-index: 1000;
             display: none;
-            font-size: 1rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
             font-family: var(--font-lora);
         }
 
@@ -149,17 +152,26 @@
             }
 
             .email-section-wrapper {
-                width: clamp(250px, 80vw, 450px);
+                margin: 5vh auto 2rem;
             }
         }
 
         @media (max-width: 600px) {
             .email-section {
-                padding: 0.8rem;
+                padding: clamp(0.8rem, 2vw, 1rem);
             }
 
             .email-section p {
-                font-size: 0.9rem;
+                font-size: clamp(0.8rem, 2vw, 0.9rem);
+            }
+
+            .email-section input[type="email"],
+            .email-section textarea {
+                font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+            }
+
+            .email-section button {
+                font-size: clamp(0.8rem, 1.8vw, 0.9rem);
             }
         }
     </style>
