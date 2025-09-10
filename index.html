@@ -8,14 +8,13 @@
     <meta name="author" content="Greenights">
     <title>Greenights - Coming Soon</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Alice&family=Lora:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <style>
         :root {
-            --primary-color: #2a583e;
-            --secondary-color: #d8c09a;
-            --text-light: #f4f2ee;
-            --text-dark: #333;
-            --font-alice: 'Alice', serif;
+            --primary-color: #2a583e; /* Earthy green to match natural theme */
+            --secondary-color: #d8c09a; /* Warm beige for contrast */
+            --text-light: #f4f2ee; /* Light text for readability on dark backgrounds */
+            --text-dark: #333; /* Fallback background */
             --font-lora: 'Lora', serif;
         }
 
@@ -25,11 +24,12 @@
 
         body {
             margin: 0;
-            font-family: var(--font-alice);
+            font-family: var(--font-lora);
             color: var(--text-light);
             background-color: var(--text-dark);
             min-height: 100vh;
             overflow-x: hidden;
+            overflow-y: auto;
         }
 
         .container {
@@ -38,42 +38,39 @@
             display: flex;
             flex-direction: column;
             background-size: cover;
-            background-position: center bottom;
-            background-image: url('images/Greenights Landscape Background Web.png');
-            overflow-y: auto;
+            background-position: center;
+            background-image: url('images/Greenights - Bkg - Landscape.jpg');
         }
 
         .overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.3); /* Subtle overlay for readability */
             z-index: 1;
         }
 
         .email-section-wrapper {
             position: absolute;
-            bottom: 2vh;
-            right: 2%;
-            width: clamp(350px, 50vw, 700px);
-            max-height: 30vh;
+            bottom: 2vh; /* Bottom 10% (approx) */
+            left: 50%;
+            transform: translateX(-50%); /* Horizontally center */
+            width: clamp(300px, 80vw, 500px); /* Responsive width */
             z-index: 2;
-            padding: 0.5rem;
+            padding: 1rem;
         }
 
         .email-section {
-            padding: clamp(0.8rem, 3vw, 1.5rem);
-            background: rgba(0, 0, 0, 0.6);
+            padding: clamp(1rem, 3vw, 1.5rem);
+            background: rgba(0, 0, 0, 0.6); /* Semi-transparent to match earthy theme */
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             display: flex;
             flex-direction: column;
-            max-height: 30vh;
-            overflow-y: auto;
         }
 
         .email-section p {
             margin: 0 0 0.8rem;
-            font-size: clamp(0.8rem, 1.4vw, 1rem);
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
             line-height: 1.5;
             font-family: var(--font-lora);
         }
@@ -97,7 +94,7 @@
             background: rgba(255, 255, 255, 0.15);
             color: var(--text-light);
             border-radius: 6px;
-            font-size: clamp(0.7rem, 1.3vw, 0.9rem);
+            font-size: clamp(0.8rem, 1.3vw, 1rem);
             font-family: var(--font-lora);
             width: 100%;
         }
@@ -115,13 +112,13 @@
             border-radius: 6px;
             font-weight: 500;
             font-size: clamp(0.9rem, 1.8vw, 1rem);
-            font-family: var(--font-alice);
+            font-family: var(--font-lora);
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
         .email-section button:hover:not(:disabled) {
-            background-color: #3f7a55;
+            background-color: #3f7a55; /* Lighter green on hover */
             transform: translateY(-2px);
         }
 
@@ -130,47 +127,36 @@
             cursor: not-allowed;
         }
 
-        .status-message {
-            margin-top: 0.8rem;
-            padding: 0.4rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            text-align: center;
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: var(--text-light);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: none;
+            font-size: 1rem;
+            font-family: var(--font-lora);
         }
 
-        .status-message.success {
-            background: rgba(46, 125, 50, 0.2);
-            color: #4caf50;
-        }
-
-        .status-message.error {
-            background: rgba(211, 47, 47, 0.2);
-            color: #d32f2f;
+        .popup.show {
+            display: block;
         }
 
         @media (orientation: portrait) {
             .container {
-                background-image: url('images/Greenights Portrait Background Web - with Concept Text.png');
-                background-position: center;
-                padding: 5vh 0;
+                background-image: url('images/Greenights - Bkg - Portrait.jpg');
             }
 
             .email-section-wrapper {
-                position: absolute;
                 bottom: 2vh;
-                right: 2%;
+                left: 50%;
+                transform: translateX(-50%);
                 width: clamp(250px, 80vw, 450px);
-                max-height: none;
-                margin: 0;
-            }
-
-            .email-section {
-                max-height: none;
-                overflow-y: unset;
-            }
-
-            .email-section p {
-                font-size: clamp(0.8rem, 1.4vw, 1rem);
             }
         }
 
@@ -180,7 +166,7 @@
             }
 
             .email-section p {
-                font-size: 0.8rem;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -194,35 +180,31 @@
                 <p>Please leave your email address for updates and a note if you have any interest in partnering or becoming a member.</p>
                 <p>Greenights: for people who endeavor to leave no trace but love and respect - for remote natural spaces.</p>
                 <form id="contact-form" action="https://formspree.io/f/xqadnedk" method="post" novalidate>
-                    <input type="email" name="_replyto" placeholder="Your email address" required aria-required="true" aria-label="Email address">
+                    <input type="email" name="_replyto" placeholder="Your Email Address" required aria-required="true" aria-label="Email address">
                     <textarea name="message" placeholder="Questions/Comments" rows="4" aria-label="Questions or comments"></textarea>
                     <button type="submit" aria-label="Submit form">Send</button>
-                    <div class="status-message" id="form-status" role="status" aria-live="polite"></div>
                 </form>
             </div>
         </div>
+        <div class="popup" id="popup-message">Thank you, submitted!</div>
     </div>
 
     <script>
         (function () {
             const form = document.getElementById("contact-form");
-            const status = document.getElementById("form-status");
+            const popup = document.getElementById("popup-message");
             const submitButton = form.querySelector("button");
 
             // Email validation regex
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            // Debounce function to prevent multiple submissions
-            function debounce(func, wait) {
-                let timeout;
-                return function executedFunction(...args) {
-                    const later = () => {
-                        clearTimeout(timeout);
-                        func(...args);
-                    };
-                    clearTimeout(timeout);
-                    timeout = setTimeout(later, wait);
-                };
+            // Show popup and refresh
+            function showPopupAndRefresh() {
+                popup.classList.add("show");
+                setTimeout(() => {
+                    popup.classList.remove("show");
+                    window.location.reload(); // Refresh page
+                }, 2000); // Popup visible for 2 seconds
             }
 
             async function handleSubmit(event) {
@@ -232,15 +214,14 @@
 
                 // Client-side validation
                 if (!emailRegex.test(email)) {
-                    status.textContent = "Please enter a valid email address.";
-                    status.className = "status-message error";
+                    popup.textContent = "Please enter a valid email address.";
+                    popup.classList.add("show");
+                    setTimeout(() => popup.classList.remove("show"), 2000);
                     return;
                 }
 
                 submitButton.disabled = true;
                 submitButton.textContent = "Sending...";
-                status.textContent = "";
-                status.className = "status-message";
 
                 try {
                     const data = new FormData(form);
@@ -251,25 +232,24 @@
                     });
 
                     if (response.ok) {
-                        status.textContent = "Thanks for your submission!";
-                        status.className = "status-message success";
-                        form.reset();
+                        showPopupAndRefresh();
                     } else {
                         const errorData = await response.json();
-                        status.textContent = errorData.errors?.map(error => error.message).join(", ") || "Oops! There was a problem submitting your form.";
-                        status.className = "status-message error";
+                        popup.textContent = errorData.errors?.map(error => error.message).join(", ") || "Oops! There was a problem submitting your form.";
+                        popup.classList.add("show");
+                        setTimeout(() => popup.classList.remove("show"), 2000);
                     }
                 } catch (error) {
-                    status.textContent = "Oops! There was a problem submitting your form.";
-                    status.className = "status-message error";
+                    popup.textContent = "Oops! There was a problem submitting your form.";
+                    popup.classList.add("show");
+                    setTimeout(() => popup.classList.remove("show"), 2000);
                 } finally {
                     submitButton.disabled = false;
                     submitButton.textContent = "Send";
                 }
             }
 
-            // Add debounced submit handler
-            form.addEventListener("submit", debounce(handleSubmit, 300));
+            form.addEventListener("submit", handleSubmit);
 
             // Preload images to prevent flickering
             function preloadImages(urls) {
@@ -280,8 +260,8 @@
             }
 
             preloadImages([
-                'images/Greenights Landscape Background Web.png',
-                'images/Greenights Portrait Background Web - with Concept Text.png'
+                'images/Greenights - Bkg - Landscape.jpg',
+                'images/Greenights - Bkg - Portrait.jpg'
             ]);
         })();
     </script>
