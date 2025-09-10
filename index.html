@@ -48,6 +48,38 @@
             z-index: 1;
         }
 
+        .scroll-arrow {
+            position: absolute;
+            bottom: 2vh; /* At the foot of the image */
+            left: 50%;
+            transform: translateX(-50%); /* Center horizontally */
+            width: clamp(40px, 8vw, 60px); /* Dynamic circle size */
+            height: clamp(40px, 8vw, 60px);
+            background: rgba(42, 88, 62, 0.7); /* Semi-transparent primary color */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        .scroll-arrow::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: clamp(8px, 1.5vw, 12px) solid transparent;
+            border-right: clamp(8px, 1.5vw, 12px) solid transparent;
+            border-top: clamp(12px, 2.5vw, 18px) solid var(--text-light); /* Downward arrow */
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
         .email-section-wrapper {
             width: 100%; /* Full width of the page */
             margin: 5vh auto 2rem; /* Slight top margin for connection, centered, bottom spacing */
@@ -179,6 +211,7 @@
 <body>
     <div class="image-container">
         <div class="overlay"></div>
+        <div class="scroll-arrow"></div>
     </div>
     <div class="email-section-wrapper">
         <div class="email-section" role="form" aria-labelledby="form-title">
