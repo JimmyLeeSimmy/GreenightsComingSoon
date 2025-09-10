@@ -22,180 +22,34 @@
             color: var(--text-light);
             background-color: var(--text-dark);
             height: 100%;
-            overflow-x: hidden;
-            overflow-y: auto;
+            overflow-x: hidden; /* Prevents horizontal scrolling */
+            overflow-y: auto;   /* Allows vertical scrolling if content exceeds viewport */
         }
 
         .container {
             position: relative;
-            min-height: 100vh;
+            min-height: 100vh; /* Ensures container is at least viewport height */
             width: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            /* In landscape, the email box is positioned absolutely, so no need for justify-content here */
             background-size: cover;
             background-position: center;
             transition: background-image 0.5s ease-in-out;
             filter: brightness(1.25);
-            padding-bottom: 5vh;
+            /* Removed padding-bottom as the email box now needs to position relatively to bottom */
         }
 
         /* Base background for landscape */
         .container {
-            background-image: url('images/Greenights - Cover Image - Tent on Left - Low Platform - Valley Right (1).jpg');
+            background-image: url('images/Greenights Landscape Background Web.png');
         }
         
         /* Media query for portrait orientation to switch background */
         @media (orientation: portrait) {
             .container {
-                background-image: url('images/Greenights - Cover Image - Portrait 1 (1).jpg');
-                justify-content: flex-start;
-                align-items: center; /* Center content horizontally */
-            }
-            .logo-container {
-                position: relative; /* Change to relative positioning */
-                top: auto;
-                left: auto;
-                transform: none;
-                width: 70%;
-                max-width: 400px;
-                margin-top: 5vh;
-                margin-bottom: 2vh;
-                text-align: center;
-            }
-            .email-section-wrapper {
-                position: relative;
-                bottom: auto;
-                right: auto;
-                left: auto;
-                transform: none;
-                width: 90%;
-                max-width: 600px;
-                margin-top: 2vh;
-            }
-        }
-
-        /* Landscape mode positioning (default) */
-        .logo-container {
-            position: absolute;
-            top: 5vh;
-            left: 20%;
-            transform: translateX(-50%);
-            z-index: 10;
-            width: 60vw;
-            max-width: 4800px;
-        }
-
-        .logo-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto; /* Center image within its container */
-        }
-
-        .email-section-wrapper {
-            position: absolute;
-            bottom: 5vh;
-            right: 5%;
-            left: auto;
-            transform: none;
-            z-index: 5;
-            width: clamp(300px, 45vw, 600px);
-            text-align: left;
-        }
-
-        .email-section {
-            padding: clamp(1rem, 4vw, 2rem);
-            background: rgba(0, 0, 0, 0.6);
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .email-section p {
-            margin: 0 0 1rem;
-            font-size: clamp(0.9rem, 1.6vw, 1.1rem);
-            line-height: 1.6;
-            text-align: left;
-            font-family: var(--font-lora);
-        }
-        
-        .email-section p.separator {
-            border-bottom: 1px solid var(--text-light);
-            padding-bottom: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .email-section p:last-of-type {
-            margin-bottom: 0;
-        }
-
-        .email-section form {
-            display: flex;
-            flex-direction: column;
-            margin-top: 1.5rem;
-            flex-grow: 1;
-        }
-
-        .email-section input[type="email"],
-        .email-section textarea {
-            padding: clamp(0.75rem, 2vw, 1rem);
-            margin-bottom: 15px;
-            border: 1px solid var(--secondary-color);
-            background: rgba(255, 255, 255, 0.15);
-            color: var(--text-light);
-            border-radius: 6px;
-            font-size: clamp(0.8rem, 1.5vw, 1rem);
-            font-family: var(--font-lora);
-        }
-        
-        .email-section textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-
-        .email-section button {
-            padding: clamp(0.8rem, 2vw, 1.1rem);
-            background: var(--primary-color);
-            color: var(--text-light);
-            border: none;
-            cursor: pointer;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: clamp(1rem, 2vw, 1.1rem);
-            font-family: var(--font-alice);
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .email-section button:hover {
-            background-color: #3f7a55;
-            transform: translateY(-2px);
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 2;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="overlay"></div>
-        
-        <div class="logo-container">
-            <img src="images/GN Logo Transparent.png" alt="Greenights Logo">
-        </div>
-
-        <div class="email-section-wrapper">
-            <div class="email-section">
-                <p class="separator">Remote tent havens on car-free private land for two to four expedition campers in the uplands of England & Wales.</p>
-                <p class="separator">We're actively seeking investors, land partners and expedition campers who are keen to help us grow our footprint of private tent havens in England and Wales.</p>
-                <p>Please leave your email address for updates and a note if you have any interest in partnering or becoming a member.</p>
-                <p>Greenights: for people who leave no trace but love and respect - for remote natural spaces.</p>
-                <form id="contact-form" action="https
+                background-image: url('images/Greenights Portrait Background Web - with Concept Text.png');
+                /* For portrait, stack content vertically, centered */
+                justify-content: center; /* Vertically center the email box */
+                align-items: center; /* Horizontally center the email box */
+                padding: 2vh 0; /* Add vertical padding to prevent content
